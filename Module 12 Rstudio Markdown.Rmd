@@ -1,0 +1,53 @@
+---
+title: "Module 12 Markdown Functions"
+output:
+  html_document:
+    df_print: paged
+---
+# Tenative Functions
+
+This document contains, as requested by the assignment, a series of *tenative* functions for R programing in relation to the final project that has been assigned for the course. Especially since I have not had my proposal for the project confirmed yet, I wisht to stress these are all works in progress and in need of further refinement.  
+The idea behind the functions is that the functions will be able to be fed a dataset purporting to represent a fictional gym and the daily uses of various resources in the gym over the course of a year for a five year period. The first function should allow for the generation of a yearly mean, with the second hopefully allowing for a mean of all the years for a service at once. The final function that I have currently written would hopefully allow me to take the means for each year for each topic/data and then convert them into per-year graphs, allowing for the data to be visually presented.   
+
+# Non-visual functions  
+
+## Various Services Use per Day by Year    
+```{r}
+DailyUsePerYearMean<-function(x){
+  x2030<-mean(x[7:20])
+  x2031<-mean(x[9:21])
+  x2032<-mean(x[5:15])
+  x2033<-mean(x[6:19])
+  x2034<-mean(x[8:19])
+  XDailyYearlyMeans<-cbind(x2030, x2031, x2032, x2033, x2034)
+  print(XDailyYearlyMeans)
+}```  
+
+## Generating Means for all columns  
+```{r}
+TheMeanColumnTotal<-function(x){
+  TheMeanColumnTotal<-colMeans(x)
+}```  
+
+
+# Visualization Tools  
+
+## Graphing Service Means by Year  
+```{r}
+DailyUsesChart<-function(x){
+  M1<-DailyUsePerYearMean(x[,1])
+  M2<-DailyUsePerYearMean(x[,2])
+  M3<-DailyUsePerYearMean(x[,3])
+  M4<-DailyUsePerYearMean(x[,4])
+  M5<-DailyUsePerYearMean(x[,5])
+  M6<-DailyUsePerYearMean(x[,6])
+  barplot(M1, col = "black", main= "Member Sign-In Terminal Daily Use: Yearly Mean", xlab="Years")
+  barplot(M2, col = "darkolivergreen1", main= "Daily Use of Bodybuilding Equipment: Yearly Mean", xlab="Years")
+  barplot(M3, col = "darkorchid1", main= "Daily Personal Trainer Appointments: Yearly Mean", xlab="Years")
+  barplot(M4, col = "firebrick1", main= "Daily Attendence of Children's Fitness class: Yearly Mean", xlab="Years")
+  barplot(M5, col = "gold", main= "Daily Use of Aerobics Equipment: Yearly Mean", xlab="Years")
+  barplot(M6, col = "hotpink", main= "Daily Use of Sign-In sheet for pool: Yearly Mean", xlab="Years")
+}```  
+
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. 
